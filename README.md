@@ -1,8 +1,10 @@
 # akolites
 > To serve in information technology
 
-akolites adalah repository berisikan dokumentasi dan tools untuk membantu operasional IT di paroki, biara maupun komunitas.
+akolites adalah inisiatif untuk membantu operasional dan pengembangan IT di lingkungan gereja dengan menyediakan tools dan dokumentasi yang terbuka.
 
-Bila anda punya ide atau masalah, silakan buka issue di repository ini untuk bersama kita diskusikan.
+repository ini sangat terbuka untuk kontribusi, 
+anda dapat memberikan ide ataupun mendiskusikan suatu masalah dengan membuka [issue baru](https://github.com/akolites/.github/issues/new).
+anda juga dapat memberikan kontribusi (kode / dokumentasi) dalam suatu repo dengan membuka issue di repo tersebut.
 
 ---
