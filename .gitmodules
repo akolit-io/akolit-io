@@ -2,3 +2,7 @@
 	path = lower-third
 	url = https://github.com/akolites/lower-third
 	branch = static
+[submodule "kalender-liturgi"]
+	path = kalender-liturgi
+	url = https://github.com/akolites/kalender-liturgi
+	branch = static
