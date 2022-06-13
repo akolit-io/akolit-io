@@ -1,0 +1,4 @@
+[submodule "lower-third"]
+	path = lower-third
+	url = https://github.com/akolites/lower-third
+	branch = static
