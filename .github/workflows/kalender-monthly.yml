@@ -16,24 +16,26 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup
         run: |
-          WORKDIR=$PWD
-          mkdir -p kalender-liturgi/
+          mkdir -p kalender/api
           git config --global user.name '${{ github.actor }}'
           git config --global user.email '${{ github.actor }}@users.noreply.github.com'
+          echo "YEARMONTH=$(date -d '+7 hour 7 second' +'%Y-%m')" >> $GITHUB_ENV
       - name: Clone akolites/kalender-liturgi
+        working-directory: /tmp
         run: |
-          git clone https://github.com/akolites/kalender-liturgi.git ~/kalender-liturgi
-          cd ~/kalender-liturgi/
+          git clone https://github.com/akolites/kalender-liturgi.git 
       - name: Install Scraper
+        working-directory: /tmp/kalender-liturgi
         run: |
           make install
       - name: Scrape # executed at 00.00 H+0 == 17.00 H-1 : the provider server time.
+        working-directory: /tmp/kalender-liturgi
         run: |
-          YEARMONTH=$(date -d '+7 hour 7 second' +'%Y-%m') make action
+          YEARMONTH=${{ env.YEARMONTH }} make action
       - name: Commit and Push
         run: |
-          cp -rf ~/kalender-liturgi/api $WORKDIR/kalender-liturgi/api
-          cd $WORKDIR
-          git add ./api
-          git commit -m "[Automated] date:$YEARMONTH ref:${GITHUB_SHA}"
+          cp -rf /tmp/kalender-liturgi/api/* ./kalender/api/
+          git add ./kalender/api
+          git commit -m "feat/kalender: [automated] date:${{ env.YEARMONTH }}" \
+          -m "from ref:${GITHUB_SHA}"
           git push
