@@ -4,7 +4,7 @@
 <head>
 	<meta name="GCD" content="YTk3ODQ3ZWZhN2I4NzZmMzBkNTEwYjJl03f5f26ebffb1f704a4d1f468329be30" />
 	<meta charset="utf-8">
-	<title>Lower Third (beta)</title>
+	<title>Lower Third</title>
 	<meta name="generator" content="Google Web Designer 14.0.4.1108">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 	<style type="text/css" id="gwd-text-style">
@@ -46,25 +46,31 @@
 			left: 0%;
 			top: 0%;
 		}
+		
+		#title:empty {
+			display:none;
+		}
 
+		#subtitle:empty {
+			display:none;
+		}
+		
 		#title {
 			position: absolute;
 			z-index: 1;
-			font-size: 48px;
+			font-size: 38px;
 			background-image: none;
-			height: 72px;
+			height: 68px;
 			min-width: 240px;
 			transform-origin: 50% 50% 0px;
 			-webkit-transform-origin: 50% 50% 0px;
 			-moz-transform-origin: 50% 50% 0px;
 			left: 64px;
-			/*right: 64px;*/
-			font-family: Literata;
-			font-weight: 500;
-			padding: 0px 48px 8px;
-			top: 590px;
-			background-color: rgba(239, 224, 146, 0.8);		
-			word-wrap: break-word;
+			font-family: "Literata";
+			font-weight: bold;
+			padding: 0px 48px 0px;
+			top: 594px;
+			background-color: rgba(239, 224, 146, 0.8);
 		}
 
 		#subtitle {
@@ -79,25 +85,9 @@
 			color: rgb(253, 251, 251);
 			text-shadow: rgb(0, 0, 0) 2px 2px 4px;
 			border-style: none none solid;
-			font-weight: normal;
+			font-weight: bold;
 			border-bottom-width: 5px;
 			border-bottom-color: rgb(255, 255, 255);
-			max-width: 1152px;
-			word-wrap: break-word;
-
-		}
-
-		.tier-1#subtitle {
-			top: 592px;
-		}
-
-		.mazmur#title {
-			text-align: center;
-			right: 64px;
-			font-size: 36px;
-			height: 100px;
-			border-bottom: 6px inset #b1720e;
-/*			box-shadow: 0 16px 0px 0px linear-gradient(#b1720e, #ffffff); */
 		}
 
 		@media (min-width: 1277px) and (max-width: 1283px) and (min-height: 717px) and (max-height: 723px) {}
@@ -112,8 +102,6 @@
 	<h2 id="subtitle" class="animate__animated">Bacaan Pertama</h2>
 	<h1 id="title" class="animate__animated">Kej. 1: 1-2</h1>
 	<script type="text/javascript">
-		var outTimeout = null;
-
 		const h2Subtitle = document.querySelector('h2#subtitle');
 		h2Subtitle.style.setProperty('--animate-duration', '0.8s');
 
@@ -122,30 +110,11 @@
 		h1Title.style.setProperty('--animate-duration', '1.2s');
 
 		const inSet = (title, subtitle) => {
-                        h2Subtitle.classList.remove('mazmur');
-			h1Title.classList.remove('mazmur');
-
-			if (title === 'Mazmur Tanggapan'){
-			    h2Subtitle.classList.add('mazmur');
-			    h1Title.classList.add('mazmur');
-			}
-
-//                        h2Subtitle.classList.remove('mazmur');
-//                        h1Title.classList.remove('mazmur');
-
 			h2Subtitle.textContent = title;
-			h2Subtitle.classList.remove('animate__slideInUp', 'animate__fadeOutDown', 'animate__fadeIn', 'tier-1');
+			h2Subtitle.classList.remove('animate__slideInUp', 'animate__fadeOutDown');
 			void h2Subtitle.offsetWidth;
-//			h2Subtitle.classList.add('animate__slideInUp');
-			
-			if (subtitle === ''){
-			    h1Title.style.setProperty('display', 'none');
-			    h2Subtitle.classList.add('animate__fadeIn', 'tier-1');
-			    return;
-			}
-                        h2Subtitle.classList.add('animate__slideInUp');
-			
-			h1Title.style.setProperty('display', 'block');
+			h2Subtitle.classList.add('animate__slideInUp');
+
 			h1Title.textContent = subtitle;
 			h1Title.classList.remove('animate__fadeInDown', 'animate__fadeOutDown');
 			void h1Title.offsetWidth;
@@ -153,8 +122,6 @@
 		}
 
 		const outSet = () => {
-//			h2Subtitle.classList.remove('mazmur');
-//			h1Title.classList.remove('mazmur');
 			h1Title.classList.remove('animate__fadeInDown', 'animate__fadeOutDown');
 			h2Subtitle.classList.remove('animate__slideInUp', 'animate__slideOutDown', 'animate__fadeOut');
 
@@ -163,10 +130,8 @@
 		}
 
 		function updateContent(content) {
-			clearTimeout(outTimeout);
-			outSet();
 			inSet(content.title, content.subtitle);
-			outTimeout = setTimeout(outSet, 16000);
+			setTimeout(outSet, 16000);
 		}
 
 		// /** #TODO for nodecg
@@ -178,8 +143,9 @@
 		// */
 
 		const urlParams = new URLSearchParams(window.location.search);
+		// let title = urlParams.get('title') || 
 		updateContent({
-			title: urlParams.get('title'),
+			title: urlParams.get('title') || `\xa0`,
 			subtitle: urlParams.get('subtitle')
 		});
 	</script>
