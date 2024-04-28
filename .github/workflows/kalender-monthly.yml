@@ -23,7 +23,7 @@ jobs:
       - name: Clone akolites/kalender-liturgi
         working-directory: /tmp
         run: |
-          git clone --single-branch -b gh-pages https://github.com/akolites/kalender-liturgi.git 
+          git clone --single-branch https://github.com/akolites/kalender-liturgi.git 
       - name: Install Scraper
         working-directory: /tmp/kalender-liturgi
         run: |
@@ -36,6 +36,7 @@ jobs:
         run: |
           cp -rf /tmp/kalender-liturgi/api/* ./kalender/api/
           git add ./kalender/api
+          git Checkout gh-pages
           git commit -m "feat/kalender: [automated] date:${{ env.YEARMONTH }}" \
           -m "from ref:${GITHUB_SHA}"
           git push
