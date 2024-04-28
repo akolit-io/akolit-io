@@ -36,7 +36,7 @@ jobs:
         run: |
           cp -rf /tmp/kalender-liturgi/api/* ./kalender/api/
           git add ./kalender/api
-          git checkout gh-pages
+          git switch gh-pages
           git commit -m "feat/kalender: [automated] date:${{ env.YEARMONTH }}" \
           -m "from ref:${GITHUB_SHA}"
           git push
